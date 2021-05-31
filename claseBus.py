@@ -6,6 +6,14 @@ class Bus:
 	def getPlazasLibres(self):
 		return self.__plazas - self.__plazasOcupadas
 
+	def retorno(self, billetesADevolver):
+		if(billetesADevolver < self.__plazasOcupadas):
+			return self.getPlazasLibres()
+		else:
+			self.__plazasOcupadas -= billetesADevolver
+			return self.getPlazasLibres()
+
+
 	# return plazasLibres
 	def venta(self, billetesVender):
 
