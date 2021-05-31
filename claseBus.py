@@ -9,9 +9,6 @@ class Bus:
 	# return plazasLibres
 	def venta(self, billetesVender):
 
-		self.__plazasOcupadas =  if billetesVender>self.getPlazasLibres() else self.__plazasOcupadas + billetesVender
-		return self.getPlazasLibres()
-
 		if billetesVender > self.getPlazasLibres():
 			return self.getPlazasLibres()
 		else:
