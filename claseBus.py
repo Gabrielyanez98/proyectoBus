@@ -1,4 +1,4 @@
-import Billete
+import billete
 
 class Bus:
 	def __init__(self, plazas, billetes):
@@ -18,11 +18,9 @@ class Bus:
 			return self.getPlazasLibres()
 	
 	def venta(self, cliente):
-		
-		
-
+	
 		if self.__billetes > self.getPlazasLibres():
-			return self.getPlazasLibres()
+    			return self.getPlazasLibres()
 		else:
 			self.__plazasOcupadas += self.__billetes
 			billete=Billete(cliente)
