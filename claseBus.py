@@ -1,28 +1,29 @@
-import billete
+from billete import Billete
 
 class Bus:
-	def __init__(self, plazas, billetes):
+	def __init__(self, plazas):
 		self.__plazas = plazas
-		self.__plazasOcupadas = 0
-		self.__billetes = billetes
+		self.__billetes = []
 
 
 	def getPlazasLibres(self):
-		return self.__plazas - self.__plazasOcupadas
+		return self.__plazas - len(self.__billetes)
 
-	def retorno(self):
-		if(self.__billetes > self.__plazasOcupadas):
+	def retorno(self, cliente):
+		if(len(self.__billetes) > self.__plazasOcupadas):
 			return self.getPlazasLibres()
 		else:
-			self.__plazasOcupadas -= self.__billetes
+			
+			billete = Billete(cliente)
+			self.__billetes.remove(billete)
 			return self.getPlazasLibres()
 	
 	def venta(self, cliente):
 	
-		if self.__billetes > self.getPlazasLibres():
+		if len(self.__billetes) > self.getPlazasLibres():
     			return self.getPlazasLibres()
 		else:
-			self.__plazasOcupadas += self.__billetes
+			
 			billete=Billete(cliente)
 			self.__billetes.append(billete)
 			return self.getPlazasLibres()
@@ -33,5 +34,5 @@ class Bus:
 bus = Bus(5)
 bus.venta(3)
 print(bus)
-bus.retorno()
+
 print(bus)
