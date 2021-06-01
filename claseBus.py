@@ -1,4 +1,4 @@
-import billete
+from billete import Billete
 
 class Bus:
 	def __init__(self, plazas):
@@ -9,15 +9,19 @@ class Bus:
 	def getPlazasLibres(self):
 		return self.__plazas - len(self.__billetes)
 
-	def retorno(self):
-		if(len(self.__billetes) > len(self.__billetes)):
+	def retorno(self,cliente):
+		if(len(self.__billetes) - 1 < 0):
 			return self.getPlazasLibres()
 		else:
+			for i in range(len(self.__billetes)):
+				if self.__billetes[i].getCliente().getNombre() == cliente.getNombre():
+					self.__billetes.pop(i)
+					return self.getPlazasLibres()
 			return self.getPlazasLibres()
 	
 	def venta(self, cliente):
 	
-		if len(self.__billetes) > self.getPlazasLibres():
+		if 1 > self.getPlazasLibres():
     			return self.getPlazasLibres()
 		else:
 			billete=Billete(cliente)
@@ -25,5 +29,8 @@ class Bus:
 			return self.getPlazasLibres()
 
 	def __str__(self):
-		return "\n\tPlazas: "+ str(self.__plazas) + "\n\tPlazas libres: "+ str(self.getPlazasLibres())
+		clientes = ''
+		for billete in self.__billetes:
+			clientes += '\n\t\t --> ' + billete.getCliente().getNombre()
+		return "\n\tPlazas: "+ str(self.__plazas) + "\n\tPlazas libres: "+ str(self.getPlazasLibres()) + "\n\tClientes: "+ clientes
 
